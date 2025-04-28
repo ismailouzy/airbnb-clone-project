@@ -107,6 +107,48 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 
 ---
 
+## **👥 Team Roles & Responsibilities**  
+
+This project follows a structured team approach to ensure efficient development and maintenance. Below are the key roles and their responsibilities:  
+
+### **1. Backend Developer**  
+- Designs and implements API endpoints using Django REST Framework  
+- Develops core business logic for user management, bookings, and payments  
+- Integrates authentication (JWT) and authorization systems  
+- Collaborates on database schema design  
+
+### **2. Database Administrator (DBA)**  
+- Designs and optimizes PostgreSQL database schema  
+- Implements indexes and query optimizations  
+- Manages data migrations and backups  
+- Ensures data integrity and security  
+
+### **3. DevOps Engineer**  
+- Configures Docker containers for development and production  
+- Implements CI/CD pipelines using GitHub Actions  
+- Manages deployment to cloud platforms (AWS/GCP)  
+- Sets up monitoring and logging systems  
+
+### **4. QA Engineer**  
+- Writes unit and integration tests (PyTest)  
+- Conducts API testing (Postman, automated tests)  
+- Performs security and performance testing  
+- Maintains test coverage reports  
+
+### **5. Technical Lead**  
+- Oversees architecture decisions  
+- Conducts code reviews  
+- Coordinates between team members  
+- Manages technical debt and roadmap  
+
+### **6. Product Manager**  
+- Defines feature requirements  
+- Prioritizes development tasks  
+- Gathers user feedback  
+- Maintains project documentation  
+
+---
+
 ## **🤝 Contributing**  
 
 Contributions are welcome! Follow these steps:  
