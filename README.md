@@ -4,7 +4,7 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 
 ---
 
-## **📌 Features**  
+## **📌 Feature Breakdown**  
 
 ✅ **User Management** – Registration, authentication, and profile management  
 ✅ **Property Listings** – Create, update, and search vacation rentals  
@@ -15,7 +15,7 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 
 ---
 
-## **🛠 Tech Stack**  
+## **🛠 Technology Stack**  
 
 | Category       | Technologies Used |
 |---------------|------------------|
@@ -27,6 +27,76 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 | **Caching**   | Redis |
 | **DevOps**    | Docker, GitHub Actions (CI/CD) |
 | **Docs**      | OpenAPI (Swagger) |
+
+---
+
+## **🗄 Database Design**  
+
+### **🔑 Key Entities**  
+
+#### **1. Users**  
+- `id` (Primary Key)  
+- `username` (Unique identifier)  
+- `email` (Verified, unique)  
+- `password` (Encrypted)  
+- `role` (Host/Guest)  
+
+**Relationships**:  
+- One-to-Many with **Properties** (A user can list multiple properties)  
+- One-to-Many with **Bookings** (A user can make multiple bookings)  
+
+---
+
+#### **2. Properties**  
+- `id` (Primary Key)  
+- `title` (Property name)  
+- `price_per_night` (Decimal)  
+- `host_id` (Foreign Key → Users)  
+- `location` (Geo-coordinates)  
+
+**Relationships**:  
+- Many-to-One with **Users** (Each property belongs to one host)  
+- One-to-Many with **Bookings** (A property can have multiple bookings)  
+- One-to-Many with **Reviews** (A property can receive multiple reviews)  
+
+---
+
+#### **3. Bookings**  
+- `id` (Primary Key)  
+- `property_id` (Foreign Key → Properties)  
+- `guest_id` (Foreign Key → Users)  
+- `check_in` / `check_out` (Dates)  
+- `total_price` (Calculated field)  
+
+**Relationships**:  
+- Many-to-One with **Users** (Each booking belongs to one guest)  
+- Many-to-One with **Properties** (Each booking references one property)  
+- One-to-One with **Payments** (Each booking has one payment)  
+
+---
+
+#### **4. Reviews**  
+- `id` (Primary Key)  
+- `property_id` (Foreign Key → Properties)  
+- `author_id` (Foreign Key → Users)  
+- `rating` (1-5 scale)  
+- `comment` (Text)  
+
+**Relationships**:  
+- Many-to-One with **Users** (Each review written by one user)  
+- Many-to-One with **Properties** (Each review belongs to one property)  
+
+---
+
+#### **5. Payments**  
+- `id` (Primary Key)  
+- `booking_id` (Foreign Key → Bookings)  
+- `amount` (Decimal)  
+- `status` (Pending/Completed/Refunded)  
+- `payment_method` (Stripe/PayPal/etc.)  
+
+**Relationships**:  
+- One-to-One with **Bookings** (Each payment processes one booking)  
 
 ---
 
@@ -76,7 +146,7 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 
 ---
 
-## **📚 API Documentation**  
+## **📚 API Security**  
 
 ### **GraphQL Playground**  
 🔗 Explore queries at: `http://localhost:8000/graphql/`  
@@ -93,8 +163,9 @@ A scalable Django-based backend for an Airbnb-like booking platform, featuring u
 | **Reviews**  | `/api/reviews/`        | GET, POST |
 
 ---
+## **📚 CI/CD Pipeline**  
 
-## **🐳 Docker Setup (Alternative)**  
+## **🐳 Docker Setup**  
 
 1. **Build and run containers**  
    ```bash
